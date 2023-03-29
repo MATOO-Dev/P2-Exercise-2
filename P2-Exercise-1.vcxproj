@@ -132,7 +132,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FractalGenerator.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="PulsatingAnimation.cpp" />
     <ClCompile Include="ShaderInterface.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="StringHelper.cpp" />
@@ -141,6 +143,7 @@
     <ClCompile Include="WindowInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FractalGenerator.h" />
     <ClInclude Include="PulsatingAnimation.h" />
     <ClInclude Include="ShaderInterface.h" />
     <ClInclude Include="ShaderLib.h" />

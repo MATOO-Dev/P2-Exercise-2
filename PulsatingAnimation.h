@@ -13,5 +13,8 @@ public:
 private:
 	int posX, posY;
 	int minSize, maxSize;
+	int currentSize;
+	int targetSize;
+	int changeStep;
 };
 

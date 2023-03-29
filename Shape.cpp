@@ -13,15 +13,31 @@ void Square::prepare(ViewPortGL& vp, int centerX, int centerY, int size)
 {
 	//shapes are rendered from top left corner downwards and rightwards
 	//therefore, offset render target by size/2 from center
-	vp.prepareBlock(centerX - size / 2, centerY - size / 2, size, size, this->red, this->green, this->blue);
+	vp.prepareBlock(centerX - size, centerY - size, size * 2, size * 2, this->red, this->green, this->blue);
 }
 
 void Disk::prepare(ViewPortGL& vp, int centerX, int centerY, int size)
 {
-	//unclear because circle
-	//shapes are rendered from top left corner downwards and rightwards
-	//therefore, offset render target by size/2 from center
-	//vp.preparePix(centerX - size / 2, centerY - size / 2, size, size, this->red, this->green, this->blue);
+	//create center vector
+	Vector2 center = Vector2(centerX, centerY);
+	const int segments = 60;
+	//create array for border points
+	Vector2 points[segments];
+	//fill point zero
+	points[0] = center + (Vector2(0, -1) * size);
+	//iterate over rest of points array
+	float step = 360 / segments;
+	for (int i = 1; i < segments; i++)
+	{
+		//set current to points[0] rotated by step around center i times
+		points[i] = points[0].rotateAround(center, step * i);
+		//std::cout << "p[" << i << "] set to " << points[i].x << ", " << points[i].y << std::endl;
+		//prepare triangle between i and i-1
+		vp.prepareTriangle(points[i].x, points[i].y, points[i - 1].x, points[i - 1].y, center.x, center.y, this->red, this->green, this->blue);
+		
+	}
+	//connect last to first
+	vp.prepareTriangle(points[segments - 1].x, points[segments - 1].y, points[0].x, points[0].y, center.x, center.y, this->red, this->green, this->blue);
 }
 
 void EquilateralTriangle::prepare(ViewPortGL& vp, int centerX, int centerY, int size)
@@ -36,28 +52,12 @@ void EquilateralTriangle::prepare(ViewPortGL& vp, int centerX, int centerY, int 
 	//v = s * cos(alpha)
 	double v = size * cos(alpha);
 	//for example, bottom left corner is centerX - v/2, centerY + u and so on for all points
-	int x1 = centerX - (v / 2);
+	int x1 = centerX - (v);
 	int y1 = centerY + u;
-	int x2 = centerX + (v / 2);
+	int x2 = centerX + (v);
 	int y2 = centerY + u;
 	int x3 = centerX;
 	int y3 = centerY - size;
-
-	//example
-	//center is 700, 400
-	//size is 300
-	//alpha is approximately 0.5235
-	//u is 150
-	//v is approximately 299.9874 = 300
-	//p1 is 550, 550
-	//p2 is 850, 550
-	//p3 is 700, 100
-	std::cout << "alpha is " << alpha << std::endl;
-	std::cout << "u is " << u << std::endl;
-	std::cout << "v is " << v << std::endl;
-	std::cout << "p1 is " << x1 << ", " << y1 << std::endl;
-	std::cout << "p1 is " << x2 << ", " << y2 << std::endl;
-	std::cout << "p1 is " << x3 << ", " << y3 << std::endl;
 
 	vp.prepareTriangle(x1, y1, x2, y2, x3, y3, this->red, this->green, this->blue);
 }
