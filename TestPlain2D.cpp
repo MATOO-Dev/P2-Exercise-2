@@ -171,16 +171,7 @@ int main() {
 	//DrawCircles();
 	//DrawTriangles();
 	//AnimateShapes();
-	RenderTriangleFractal();
+	//RenderTriangleFractal();
 	//RunSierpinski();
-	//Vector2 evaluateTop = Vector2(500, 0);
-	//ColorContainer::EvaluateColor(evaluateTop);
-	//std::cout << std::endl;
-	//Vector2 evaluateLeft = Vector2(0, 1000);
-	//ColorContainer::EvaluateColor(evaluateLeft);
-	//std::cout << std::endl;
-	//Vector2 evaluateRight = Vector2(1000, 1000);
-	//ColorContainer::EvaluateColor(evaluateRight);
-	//std::cout << std::endl;
 	return 0;
 }
