@@ -39,7 +39,7 @@
     <ClCompile Include="PulsatingAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FractalGenerator.cpp">
+    <ClCompile Include="FractalUnit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,7 +65,7 @@
     <ClInclude Include="Shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FractalGenerator.h">
+    <ClInclude Include="FractalUnit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

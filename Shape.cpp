@@ -32,6 +32,7 @@ void Disk::prepare(ViewPortGL& vp, int centerX, int centerY, int size)
 		//set current to points[0] rotated by step around center i times
 		points[i] = points[0].rotateAround(center, step * i);
 		//std::cout << "p[" << i << "] set to " << points[i].x << ", " << points[i].y << std::endl;
+		//std::cout << "Total should be " << i*step << " degrees" << std::endl;
 		//prepare triangle between i and i-1
 		vp.prepareTriangle(points[i].x, points[i].y, points[i - 1].x, points[i - 1].y, center.x, center.y, this->red, this->green, this->blue);
 		
@@ -58,6 +59,30 @@ void EquilateralTriangle::prepare(ViewPortGL& vp, int centerX, int centerY, int 
 	int y2 = centerY + u;
 	int x3 = centerX;
 	int y3 = centerY - size;
+
+	vp.prepareTriangle(x1, y1, x2, y2, x3, y3, this->red, this->green, this->blue);
+}
+
+//same as above but points down
+//this is just a copy, because im not sure whether im supposed to leave the prepare function the same
+void EquiTriDown::prepare(ViewPortGL& vp, int centerX, int centerY, int size)
+{
+	//some math:
+	//triangles are defined by A,B,C coordinates in ViewPortGL
+	//therefore, we need to calculate u and v
+	//angle alpha = pi/6
+	double alpha = (M_PI / 6);
+	//u = s * sin(alpha)
+	double u = size * sin(alpha);
+	//v = s * cos(alpha)
+	double v = size * cos(alpha);
+	//for example, bottom left corner is centerX - v/2, centerY + u and so on for all points
+	int x1 = centerX - (v);
+	int y1 = centerY - u;
+	int x2 = centerX + (v);
+	int y2 = centerY - u;
+	int x3 = centerX;
+	int y3 = centerY + size;
 
 	vp.prepareTriangle(x1, y1, x2, y2, x3, y3, this->red, this->green, this->blue);
 }

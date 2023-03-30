@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Shape.h"
 #include "PulsatingAnimation.h"
+#include "FractalUnit.h"
 
 void test() {
 	ViewPortGL vp = ViewPortGL("OpenGL Plain Test", 1000, 1000);
@@ -106,15 +107,80 @@ void AnimateShapes()
 	}
 }
 
+void RenderTriangleFractal()
+{
+	//create window
+	ViewPortGL targetWindow = ViewPortGL("Triangles go brrrrrrrrrrrrrrrrrrrrr", 1000, 900);
+
+	//create starting triangle
+	Vector2 startPos = Vector2(500, 590);
+	int startSize = 300;
+	//ColorContainer startingColor = ColorContainer(66, 50, 0);
+	ColorContainer startingColor = ColorContainer::EvaluateColor(startPos);
+	int maxDepth = 5;
+
+	FractalUnit startingTri = FractalUnit(startPos, startSize, startingColor, maxDepth, targetWindow);
+	startingTri.PrepareRender(startingColor, targetWindow);
+
+	//recursively generate child triangles
+	startingTri.GenerateChildUnits(startingTri, 0, targetWindow);
+
+	//render generated triangles
+	targetWindow.sendTriangles();
+	targetWindow.swapBuffers();
+
+	//keep window open
+	while (!targetWindow.windowShouldClose()) {}
+}
+
+void Sierpinski(ViewPortGL& targetWindow, Vector2 pointA, Vector2 pointB, Vector2 pointC, int depth)
+{
+	if (depth == 0)
+		return;
+
+	Vector2 MAB = Vector2((pointA.x + pointB.x) * 0.5f, (pointA.y + pointB.y) * 0.5f);
+	Vector2 MAC = Vector2((pointA.x + pointC.x) * 0.5f, (pointA.y + pointC.y) * 0.5f);
+	Vector2 MBC = Vector2((pointB.x + pointC.x) * 0.5f, (pointB.y + pointC.y) * 0.5f);
+
+	targetWindow.prepareTriangle(MAB.x, MAB.y, MAC.x, MAC.y, MBC.x, MBC.y, 255, 255, 255);
+
+	Sierpinski(targetWindow, pointA, MAB, MAC, depth - 1);
+	Sierpinski(targetWindow, MAB, pointB, MBC, depth - 1);
+	Sierpinski(targetWindow, MAC, MBC, pointC, depth - 1);
+}
+
+void RunSierpinski()
+{
+	//create window
+	ViewPortGL targetWindow = ViewPortGL("Sierpinski", 1000, 1000);
+
+	targetWindow.sendTriangles();
+
+	Sierpinski(targetWindow, Vector2(0, 1000), Vector2(1000, 1000), Vector2(500, 0), 6);
+
+	targetWindow.sendTriangles();
+	targetWindow.swapBuffers();
+
+	//keep window open
+	while (!targetWindow.windowShouldClose()) { }
+}
+
 int main() {
 	//test();
 	//DrawSquares();
 	//DrawCircles();
 	//DrawTriangles();
-	AnimateShapes();
+	//AnimateShapes();
+	RenderTriangleFractal();
+	//RunSierpinski();
+	//Vector2 evaluateTop = Vector2(500, 0);
+	//ColorContainer::EvaluateColor(evaluateTop);
+	//std::cout << std::endl;
+	//Vector2 evaluateLeft = Vector2(0, 1000);
+	//ColorContainer::EvaluateColor(evaluateLeft);
+	//std::cout << std::endl;
+	//Vector2 evaluateRight = Vector2(1000, 1000);
+	//ColorContainer::EvaluateColor(evaluateRight);
+	//std::cout << std::endl;
 	return 0;
 }
-
-
-
-

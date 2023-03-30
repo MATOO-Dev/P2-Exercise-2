@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ViewPortGL.h"
+#include <iostream>
 
 class Shape {
 public:
@@ -29,6 +30,13 @@ class EquilateralTriangle : public Shape
 {
 public:
 	EquilateralTriangle(int red, int green, int blue) :Shape(red, green, blue) {}
+	void prepare(ViewPortGL& vp, int centerX, int centerY, int size) override;
+};
+
+class EquiTriDown : public Shape
+{
+public:
+	EquiTriDown(int red, int green, int blue) :Shape(red, green, blue) {}
 	void prepare(ViewPortGL& vp, int centerX, int centerY, int size) override;
 };
 
@@ -64,5 +72,11 @@ public:
 		float rotX = ((this->x - pivot.x) * cos(angle)) - ((pivot.y - this->y) * sin(angle)) + pivot.x;
 		float rotY = pivot.y - ((pivot.y - this->y) * cos(angle)) + ((this->x - pivot.x) * sin(angle));
 		return Vector2(rotX, rotY);
+	}
+
+	float Distance(const Vector2& other)
+	{
+		Vector2 diff = Vector2(other.x - x, other.y - y);
+		return sqrt((diff.x * diff.x) + (diff.y * diff.y));
 	}
 };
