@@ -55,9 +55,6 @@ void FractalUnit::GenerateChildUnits(FractalUnit& parent, int currentDepth, View
 
 	//step 3: generate new color for child position
 	ColorContainer childColors[3];
-	//childColors[0] = ColorContainer(color.red, color.green + 10 * currentDepth, color.blue);
-	//childColors[1] = ColorContainer(color.red + 10 * currentDepth, color.green, color.blue);
-	//childColors[2] = ColorContainer(color.red, color.green, color.blue + 10 * currentDepth);
 	ColorContainer topColor = ColorContainer(0, 255, 0);
 	ColorContainer leftColor = ColorContainer(255, 0, 0);
 	ColorContainer rightColor = ColorContainer(255, 255, 0);

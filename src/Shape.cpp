@@ -1,5 +1,3 @@
-#define _USE_MATH_DEFINES
-#include <cmath>
 #include "../include/Shape.h"
 #include <iostream>
 
@@ -20,13 +18,13 @@ void Disk::prepare(ViewPortGL& vp, int centerX, int centerY, int size)
 {
 	//create center vector
 	Vector2 center = Vector2(centerX, centerY);
-	const int segments = 60;
+	const int segments = 360;
 	//create array for border points
 	Vector2 points[segments];
 	//fill point zero
 	points[0] = center + (Vector2(0, -1) * size);
 	//iterate over rest of points array
-	float step = 360 / segments;
+	float step = (float)360 / (float)segments;
 	for (int i = 1; i < segments; i++)
 	{
 		//set current to points[0] rotated by step around center i times

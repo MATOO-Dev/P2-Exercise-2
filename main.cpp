@@ -5,19 +5,8 @@
 #include "include/Shape.h"
 #include "include/PulsatingAnimation.h"
 #include "include/FractalUnit.h"
-
-void test() {
-	ViewPortGL vp = ViewPortGL("OpenGL Plain Test", 1000, 1000);
-	bool isRunning = true;
-	while (isRunning) {
-		isRunning = !vp.windowShouldClose();
-
-		vp.prepareTriangle(0, 999, 999, 999, 500, 0, 200, 0, 0, 0, 0, 200, 0, 200, 0);
-		vp.sendTriangles();
-
-		vp.swapBuffers();
-	}
-}
+#include <chrono>
+#include <thread>
 
 void DrawSquares()
 {
@@ -38,7 +27,8 @@ void DrawSquares()
 	targetWindow.sendTriangles();
 	targetWindow.swapBuffers();
 	//keep window open
-	while (!targetWindow.windowShouldClose()) {}
+	while (!targetWindow.windowShouldClose())
+        this_thread::sleep_for(chrono::milliseconds(100));
 }
 
 void DrawCircles()
@@ -60,7 +50,8 @@ void DrawCircles()
 	targetWindow.sendTriangles();
 	targetWindow.swapBuffers();
 	//keep window open
-	while (!targetWindow.windowShouldClose()) {}
+	while (!targetWindow.windowShouldClose())
+        this_thread::sleep_for(chrono::milliseconds(100));
 }
 
 void DrawTriangles()
@@ -82,7 +73,8 @@ void DrawTriangles()
 	targetWindow.sendTriangles();
 	targetWindow.swapBuffers();
 	//keep window open
-	while (!targetWindow.windowShouldClose()) {}
+	while (!targetWindow.windowShouldClose())
+        this_thread::sleep_for(chrono::milliseconds(100));
 }
 
 void AnimateShapes()
@@ -104,6 +96,7 @@ void AnimateShapes()
 		triangleAnim.animate(targetWindow, yellowTriangle);
 		targetWindow.sendTriangles();
 		targetWindow.swapBuffers();
+        this_thread::sleep_for(chrono::milliseconds(10));
 	}
 }
 
@@ -130,7 +123,8 @@ void RenderTriangleFractal()
 	targetWindow.swapBuffers();
 
 	//keep window open
-	while (!targetWindow.windowShouldClose()) {}
+	while (!targetWindow.windowShouldClose())
+        this_thread::sleep_for(chrono::milliseconds(100));
 }
 
 void Sierpinski(ViewPortGL& targetWindow, Vector2 pointA, Vector2 pointB, Vector2 pointC, int depth)
@@ -162,16 +156,16 @@ void RunSierpinski()
 	targetWindow.swapBuffers();
 
 	//keep window open
-	while (!targetWindow.windowShouldClose()) { }
+	while (!targetWindow.windowShouldClose())
+        this_thread::sleep_for(chrono::milliseconds(100));
 }
 
 int main() {
-	//test();
 	//DrawSquares();
 	//DrawCircles();
 	//DrawTriangles();
 	//AnimateShapes();
 	//RenderTriangleFractal();
-	//RunSierpinski();
+	RunSierpinski();
 	return 0;
 }

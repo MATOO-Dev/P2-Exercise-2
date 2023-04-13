@@ -2,6 +2,8 @@
 
 #include "../include/ViewPortGL.h"
 #include <iostream>
+#define _USE_MATH_DEFINES
+#include <cmath>
 
 class Shape {
 public:
