@@ -1,4 +1,4 @@
-#include "WindowInterface.h"
+#include "../include/WindowInterface.h"
 
 #include <iostream>
 #include <stdio.h>

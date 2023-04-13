@@ -1,6 +1,6 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
-#include "Shape.h"
+#include "../include/Shape.h"
 #include <iostream>
 
 Shape::Shape(int red, int green, int blue) {

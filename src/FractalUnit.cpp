@@ -1,5 +1,5 @@
 #define _USE_MATH_DEFINES
-#include "FractalUnit.h"
+#include "../include/FractalUnit.h"
 #include <cmath>
 
 FractalUnit::FractalUnit(Vector2 pos, int siz, ColorContainer objColor, int maxD, ViewPortGL& window)

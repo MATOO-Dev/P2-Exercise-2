@@ -1,4 +1,4 @@
-#include "PulsatingAnimation.h"
+#include "../include/PulsatingAnimation.h"
 
 PulsatingAnimation::PulsatingAnimation(int x, int y, int min, int max)
 {

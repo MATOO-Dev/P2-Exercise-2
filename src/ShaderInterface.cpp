@@ -1,8 +1,8 @@
 #include <fstream>
 #include <streambuf>
 #include <iostream>
-#include "ShaderInterface.h"
-#include "StringHelper.h"
+#include "../include/ShaderInterface.h"
+#include "../include/StringHelper.h"
 
 int ShaderInterface::lastShaderUsed = -1;
 int ShaderInterface::lastUsedShaderID = -1;

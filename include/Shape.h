@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ViewPortGL.h"
+#include "../include/ViewPortGL.h"
 #include <iostream>
 
 class Shape {

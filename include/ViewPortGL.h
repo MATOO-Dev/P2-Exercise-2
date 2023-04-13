@@ -1,7 +1,7 @@
 #pragma once
 
-#include "WindowInterface.h"
-#include "ShaderInterface.h"
+#include "../include/WindowInterface.h"
+#include "../include/ShaderInterface.h"
 
 class ViewPortGL {
 

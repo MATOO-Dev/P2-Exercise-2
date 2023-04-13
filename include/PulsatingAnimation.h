@@ -1,6 +1,6 @@
 #pragma once
-#include "ViewPortGL.h"
-#include "Shape.h"
+#include "../include/ViewPortGL.h"
+#include "../include/Shape.h"
 
 
 

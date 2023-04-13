@@ -1,5 +1,5 @@
-#include "ViewPortGL.h"
-#include "ShaderLib.h"
+#include "../include/ViewPortGL.h"
+#include "../include/ShaderLib.h"
 
 
 

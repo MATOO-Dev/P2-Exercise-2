@@ -1,10 +1,10 @@
-#include "ViewPortGL.h"
+#include "include/ViewPortGL.h"
 #include <cmath>
 #include <algorithm>
 #include <iostream>
-#include "Shape.h"
-#include "PulsatingAnimation.h"
-#include "FractalUnit.h"
+#include "include/Shape.h"
+#include "include/PulsatingAnimation.h"
+#include "include/FractalUnit.h"
 
 void test() {
 	ViewPortGL vp = ViewPortGL("OpenGL Plain Test", 1000, 1000);

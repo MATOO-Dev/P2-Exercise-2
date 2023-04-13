@@ -1,5 +1,5 @@
 #pragma once
-#include "Shape.h"
+#include "../include/Shape.h"
 #include <iostream>
 
 struct ColorContainer
